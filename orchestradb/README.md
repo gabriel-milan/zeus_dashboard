@@ -1,2 +1,0 @@
-# orchestradb
-The orchestra database
