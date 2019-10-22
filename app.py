@@ -103,12 +103,12 @@ def index():
 @app.route('/queue')
 def queue():
     if current_user.is_authenticated:
-        return redirect("http://localhost:5000/queue", code=302)
+        return redirect("http://146.164.147.170:5000/queue", code=302)
 
 @app.route('/usage')
 def usage():
     if current_user.is_authenticated:
-        return redirect("http://localhost:5000/usage", code=302)
+        return redirect("http://146.164.147.170:5000/usage", code=302)
 
 # @app.after_request
 # def add_headers(response):
