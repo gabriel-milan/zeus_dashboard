@@ -116,7 +116,7 @@ $(document).ready(function () {
     var chartCPU = new Chart(contextCPU, configCPU);
     var chartMem = new Chart(contextMem, configMem);
   
-    const source = new EventSource("http://localhost:5000/usage", {withCredentials: true});
+    const source = new EventSource("/usage", {withCredentials: true});
   
     source.onmessage = function (event) {
       // Parsing data

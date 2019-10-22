@@ -3,7 +3,7 @@ $(document).ready(function () {
     const queueDiv = document.getElementById('queueDiv');
     const histoDiv = document.getElementById('historyDiv');
 
-    const source = new EventSource("http://localhost:5000/queue", {withCredentials: true});
+    const source = new EventSource("/queue", {withCredentials: true});
 
     source.onmessage = function (event) {
         

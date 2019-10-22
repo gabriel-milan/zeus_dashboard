@@ -100,6 +100,16 @@ class UserView(MyModelView):
 def index():
     return redirect(url_for('admin.index'))
 
+@app.route('/queue')
+def queue():
+    if current_user.is_authenticated:
+        return redirect("http://localhost:5000/queue", code=302)
+
+@app.route('/usage')
+def usage():
+    if current_user.is_authenticated:
+        return redirect("http://localhost:5000/usage", code=302)
+
 # @app.after_request
 # def add_headers(response):
 #     response.headers.add('Access-Control-Allow-Origin', '*')
