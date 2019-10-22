@@ -12,20 +12,11 @@ from flask_admin import BaseView, expose
 from flask_cors import CORS
 from config import *
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from orchestradb.models import *
-
 # Create Flask application
 app = Flask(__name__)
 # CORS(app)
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
-
-# Defining engine for DB
-engine = create_engine('postgres://lps:DuQDYsBP@postgres-lps-cluster-db.cahhufxxnnnr.us-east-2.rds.amazonaws.com/postgres')
-Session = sessionmaker(bind=engine)
-session = Session()
 
 # Define models
 roles_users = db.Table(
@@ -115,11 +106,6 @@ def index():
 #     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
 #     return response
 
-@app.route('/queue')
-def queue():
-    print(session.query(TaskBoard).all())
-    pass
-
 class SetttingsView(BaseView):
     @expose('/')
     def index(self):
@@ -158,4 +144,4 @@ def security_context_processor():
 if __name__ == '__main__':
 
     # Start app
-    app.run(host="0.0.0.0", port=80, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
