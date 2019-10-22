@@ -114,7 +114,11 @@ def queue():
 def usage():
     import requests
     if current_user.is_authenticated:
-        return requests.get('http://localhost:5000/usage').content
+        def get_data():
+            iterator = requests.get('http://localhost:5000/usage', stream=True)
+            for data in iterator:
+                yield data
+        return Response(get_data(), mimetype='text/event-stream')
 
 # @app.after_request
 # def add_headers(response):
