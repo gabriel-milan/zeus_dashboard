@@ -104,7 +104,11 @@ def index():
 def queue():
     import requests
     if current_user.is_authenticated:
-        return requests.get('http://localhost:5000/queue').content
+        def get_data():
+            iterator = requests.get('http://localhost:5000/queue', stream=True)
+            for data in iterator:
+                yield data
+        return Response(get_data(), mimetype='text/event-stream')
 
 @app.route('/usage')
 def usage():
