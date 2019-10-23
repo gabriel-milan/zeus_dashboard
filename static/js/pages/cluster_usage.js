@@ -52,26 +52,19 @@ $(document).ready(function () {
         datasets: [{
           data: [],
           backgroundColor: [
-            "#009b94",
+            "#0073b7",
             "rgba(0,0,0,0)",
           ],
           hoverBackgroundColor: [
-            "#009b94",
+            "#0a7dc1",
             "rgba(0,0,0,0)",
           ]
         }],
       },
+
       options: {
         legend: {
           display: false,
-        },
-        elements: {
-          center: {
-            text: 'Mem',
-            color: '#eb921f', // Default is #000000
-            fontStyle: 'Arial', // Default is Arial
-            sidePadding: 20 // Defualt is 20 (as a percentage)
-          }
         },
       }
     };
@@ -86,11 +79,11 @@ $(document).ready(function () {
         datasets: [{
           data: [],
           backgroundColor: [
-            "#009b94",
+            "#0073b7",
             "rgba(0,0,0,0)",
           ],
           hoverBackgroundColor: [
-            "#009b94",
+            "#0a7dc1",
             "rgba(0,0,0,0)",
           ]
         }],
@@ -99,20 +92,14 @@ $(document).ready(function () {
         legend: {
           display: false,
         },
-        elements: {
-          center: {
-            text: 'CPU',
-            color: '#eb921f', // Default is #000000
-            fontStyle: 'Arial', // Default is Arial
-            sidePadding: 20 // Defualt is 20 (as a percentage)
-          }
-        },
       }
     };
   
     var contextCPU = document.getElementById("cpuUsage").getContext("2d");
     var contextMem = document.getElementById("memUsage").getContext("2d");
-  
+    var textCPU = document.getElementById("cpuUsageNumber");
+    var textMem = document.getElementById("memUsageNumber"); 
+ 
     var chartCPU = new Chart(contextCPU, configCPU);
     var chartMem = new Chart(contextMem, configMem);
   
@@ -124,6 +111,8 @@ $(document).ready(function () {
   
       configCPU.data.datasets[0].data = [data.cpu, 100 - data.cpu];
       configMem.data.datasets[0].data = [data.mem, 100 - data.mem];
+      textCPU.innerHTML = data.cpu.toFixed(2) + '%';
+      textMem.innerHTML = data.mem.toFixed(2) + '%';
   
       chartCPU.update();
       chartMem.update();
