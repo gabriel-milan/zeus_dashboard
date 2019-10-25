@@ -113,6 +113,9 @@ $(document).ready(function () {
             else if (history[i].status == 'running') {
                 statusText = '<font color="#00ac00">running</style>';
             }
+            else if (history[i].status == 'done') {
+                statusText = '<font color="#00ac00">done</style>';
+            }
             else if (history[i].status == 'broken') {
                 statusText = '<font color="#fe0000">broken</style>';
             }
